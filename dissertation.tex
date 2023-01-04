@@ -1,0 +1,175 @@
+\documentclass[12pt, titlepage, openany]{amsbook}
+
+%%% Comment or uncomment any or all of the following packages as
+%%% necessary. TeX will run faster the fewer packages it has to load... 
+%%% You can/should load any other packages you need, but be aware that
+%%% packages can and do modify style parameters, some packages are
+%%% incompatible with other packages, and some packages have requirements
+%%% about whether or not they have to be loaded before or after other
+%%% packages.  
+
+%%% The standard AMS math packages
+\usepackage{amsmath, amsfonts, amssymb, amsthm, esint, subfig, textcomp}
+
+
+%%% For diagrams and "pics." Tikz is probably a better choice...
+\usepackage[all]{xy}
+
+%%% For hyperrefs, breaklinks might cause problems (or not really help with
+%%% long hyperrefs...) 
+% Uncomment the following two lines and change "allcolors=black" to
+% "allcolors=untgreen" to get UNT branded green hyperlinks
+\usepackage{color}
+\definecolor{untgreen}{RGB}{5,144,51}
+%\usepackage{aliascnt} 
+\usepackage[colorlinks, linktocpage, allcolors=untgreen,%
+breaklinks,pagebackref=true]{hyperref}
+
+
+%%% One option for complicated tables and arrays. The array package is used
+%%% in 
+\usepackage{array} 
+
+%%% One option for including graphics
+\usepackage{graphicx, epstopdf}
+\graphicspath{
+    {pics/chapter1/}
+    {pics/chapter2/}
+    {pics/chapter3/}
+    {pics/chapter4/}
+    {pics/chapter5/}
+    {pics/appendix/}
+}
+
+
+%%% For professional tables (as in the appendix), comment out if there are
+%%% no tables
+\usepackage{booktabs, caption, multicol}
+
+
+%%% Uncomment the following line to get the computer modern equivalent of
+%%% ``arial.'' Probably doing so will alter line breaks throughout the
+%%% document...
+%\usepackage{cmbright}
+%%% Uncomment the following line if line spacing is funky when the last line
+%%% is uncommented.
+%\usepackage[standard-baselineskip]{cmbright}
+
+%%% Cleveref plays nicely with amsthm and likes to be the last package to be
+%%% loaded
+\usepackage[capitalise, nameinlink]{cleveref}
+
+
+%%%%%%%%%%% preamble stuff ...
+%%% This loads the main style file.
+\input{UNTdissertation.sty}
+
+%%% If you need the hypcap package, uncomment the following line
+%\usepackage[all]{hypcap}
+
+%%% Choose REFERENCES or BIBLIOGRAPHY (Roughly speaking, choose "REFERENCES"
+%%% for a reference list: there is a bijection (one-to-one correspondence in
+%%% plain English) between citations in the text and the list of sources in
+%%% the REFERENCES; choose "BIBLIOGRAPHY" if not all the sources listed in
+%%% the BIBLIOGRAPHY are cited in the text, for example say you were
+%%% inspired by the discussion between Milo and the Dodecahedron in The
+%%% Phantom Tollboth.) 
+%%% References are more common in scientificky texts.
+\newcommand\myrefbibname{REFERENCES} 
+%\newcommand\myrefbibname{BIBLIOGRAPHY}
+
+%%% Make your own macros and put them in macros.tex.
+\input{macros}
+
+%%% Uncomment the following line and add the basename of the chapter file
+%%% (for example chapter1 for chapter1.tex) to have LaTeX process only
+%%% chapter 1. This probably isn't as relevant now as it was when computers
+%%% had slower processers and less memory, but if you are running tex on
+%%% your smartphone, it might come in handy
+%\includeonly{chapter1}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+%%% These are the roman numbered pages -- the frontmatter.
+\frontmatter
+
+%%% Things for the title page ...
+\title{Physical Boundary as a Source of Anomalies \\ in Transport Processes in Acoustics and Electrodynamics}
+\author{Andrii Bozhko, B.S., M.S.} 
+\degree{Dissertation Prepared for the Degree of\\ DOCTOR OF PHILOSOPHY}
+\degreedate{December 2018}
+\approved{Arkadii Krokhin, Major Professor\\
+  Vladimir Drachev, Committee Member\\
+  Yuankun Lin, Committee Member\\
+  Arup Neogi, Committee Member\\
+  Yuri Rostovtsev, Committee Member\\
+%  David Schultz, Committee Member\\
+  Michael Monticino, Interim Chair of the\\
+  \hspace{36pt}Department of Physics\\
+  Su Gao, Dean of the College of Science\\
+  Victor Prybutok, Dean of the Toulouse\\
+  \hspace{36pt}Graduate School}
+
+%%% This makes the title page ...
+\maketitle
+
+%%% a copyright page
+\include{copyright}
+
+%%% An acknowledgments page (called acknowledgments.tex), this can be
+%%% commented out if there are no acknowledgments
+\include{acknowledgments}
+
+%%% This makes the table of contents. 
+\tableofcontents
+
+%%% Uncomment the following to generate lists of tables or figures. 
+\listoftables
+\listoffigures
+
+%%% Now for the actual dissertation -- the mainmatter.
+\mainmatter
+
+%%% This helps LaTeX to break a display across two pages in some
+%%% circumstances. If it's commented out, the number of underful pages will
+%%% probably go up (and the text will be distributed evenly on the
+%%% underfilled pages, not pushed to the top).
+\allowdisplaybreaks
+  
+%%% Include the chapters here.
+
+\include{chapter1}
+\include{chapter2}
+\include{chapter3}
+\include{chapter4}
+\include{chapter5}
+
+%%% Uncomment if there are appendices. This command sets some things up in
+%%% preparation for the actual appendices.
+\appendix
+
+%%% Include appendix "chapters" here. A single appendix should start with
+%%% \appchapter*{TITLE} rather than \chapter{TITLE}. This supresses the 
+%%% numbering (if there is only one appendix it doesn't rate a number). If
+%%% there is more than one appendix, use \appchapter to get numbered
+%%% appendices (A, B, C, ...).  
+\include{appendix}
+
+%%% This starts the backmatter, which so far is only the bibliography.
+\backmatter
+
+%%% This modifies some bits of the amsplain bibliography style to conform
+%%% with UNT/TGS requirements.
+\bibliographystyle{modifiedstyle}
+
+%%% Include the .bib file containing the bibliographic information (in
+%%% BiBTeX format...). ``bibliography.bib'' is a descriptive name for a
+%%% bibliography file in BiBTeX format.
+\bibliography{bibliography}{}
+
+
+%%% That's all folks!
+\end{document}
